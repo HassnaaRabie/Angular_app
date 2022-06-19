@@ -1,0 +1,95 @@
+<div class="row">
+	<div class="col-md-6 mx-auto p-0">
+		<div class="card">
+			<div class="login-box">
+				<div class="login-snip">
+					<input id="tab-1" type="radio" name="tab" class="sign-in" checked /><label for="tab-1"
+						class="tab">Login</label>
+					<input id="tab-2" type="radio" name="tab" class="sign-up" /><label for="tab-2" class="tab">Sign
+						Up</label>
+
+					<div class="login-space">
+						<div class="login">
+							<div class="group">
+								<label for="pass" class="label">Email Address</label>
+								<input id="pass" type="text" class="input" placeholder="Enter your email address"
+								 />
+							
+							</div>
+							<div class="group">
+								<label for="pass" class="label">Password</label>
+								<input id="pass" type="password" class="input" data-type="password"
+									placeholder="Enter your password" 
+									
+									 />
+								
+							</div>
+							<div class="group">
+								<input id="check" type="checkbox" class="check" checked />
+								<label for="check"><span class="icon"></span> Keep me Signed in</label>
+							</div>
+							<div class="group">
+								<input type="submit" class="button" value="Sign In"/>
+							</div>
+							<div class="hr"></div>
+							<div class="foot">
+								<a href="#">Forgot Password?</a>
+							</div>
+						</div>
+						<form class="form" #f="ngForm" (ngSubmit)="signup(f)">
+							<div class="sign-up-form">
+								<div class="group">
+									<label for="user" class="label">Username</label>
+									<input id="user" type="text" class="input" placeholder="Create your Username"
+										ngModel name="name" required #name="ngModel" />
+									<div class="text-danger" *ngIf="name.invalid && name.touched">
+										Name is required
+									</div>
+								</div>
+								<div class="group">
+									<label for="pass" class="label">Password</label>
+									<input id="pass" type="password" class="input" data-type="password"
+										placeholder="Create your password" ngModel name="password" required
+										minlength="8" #password="ngModel" />
+									<div class="text-danger"
+										*ngIf="password.touched && password.errors?.['required']">
+										password is required
+									</div>
+									<div class="text-danger"
+										*ngIf="password.touched && password.errors?.['password']">
+										password should be +8 digit
+									</div>
+								</div>
+								<div class="group">
+									<label for="pass" class="label">Repeat Password</label>
+									<input id="pass" type="password" class="input" data-type="password"
+										placeholder="Repeat your password"  ngModel name="passwordConfirm" required #passwordConfirm="ngModel"/>
+										<div class="text-danger" *ngIf="passwordConfirm.invalid && passwordConfirm.touched">password is required</div>
+    									<div class="text-danger" *ngIf="passwordConfirm.value !== password.value && passwordConfirm.touched">password doesn't match</div>
+								</div>
+								<div class="group">
+									<label for="pass" class="label">Email Address</label>
+									<input id="pass" type="text" class="input" placeholder="Enter your email address"
+										ngModel name="email" required email #email="ngModel" />
+									<div class="text-danger" *ngIf="email.touched && email.errors?.['required']">
+										Email is required
+									</div>
+									<div class="text-danger" *ngIf="email.touched && email.errors?.['email']">
+										Email isn't in the correct format
+									</div>
+								</div>
+								<div class="group">
+									<input type="submit" class="button" value="Sign Up"  [disabled]="f.invalid || passwordConfirm.value !== password.value"/>
+								</div>
+								<!-- <div class="hr"></div>
+								<div class="foot">
+									<label for="tab-1">Already Member?</label>
+								</div> -->
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
