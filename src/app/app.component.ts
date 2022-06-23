@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { from } from 'rxjs';
+import {  FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './services/authentication.service';
+
 
 
 
@@ -12,34 +15,41 @@ import { from } from 'rxjs';
 export class AppComponent {
   title = 'e-commerce';
 
- 
+  loginForm = new FormGroup({
+    email : new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required)
+  })
+ constructor(private authService : AuthenticationService){}
      
-    
+
+ get email(){
+  return this.loginForm.get('email')
+ }
+ get password(){
+  return this.loginForm.get('password')
+ }
+ submit() {
+    if(!this.loginForm.valid){
+      return;
+    }
+
+    // const {email, password} = this.loginForm.value;
+    // this.authService.login('email','password').subscribe(() =>{
+    //     this.router.navigate(['/'])
+    // })
+ } 
+
+ 
+
+
   
-  signup(_f:any){
-    console.log(from)
-  }}
-
-export interface User{
-  email:string;
-  password:string;
-  confirmpassword:string;
+  signup(f: any){
+ 
+   console.log(f)
+  }
 }
 
 
 
 
-
-
-function signup(f: any, arg1: string) {
-  throw new Error('Function not implemented.');
-}
-
-function f(f: any, arg1: string) {
-  throw new Error('Function not implemented.');
-}
-
-function _f(_f: any, arg1: string) {
-  throw new Error('Function not implemented.');
-}
 
