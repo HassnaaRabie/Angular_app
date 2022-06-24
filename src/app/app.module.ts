@@ -22,6 +22,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthenticationService } from './services/authentication.service';
+import { VerifyEmailAddressComponent } from './verify-email-address/verify-email-address.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthAccountComponent } from './auth-account/auth-account.component';
 
 
 
@@ -30,6 +34,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
+    VerifyEmailAddressComponent,
+    DashboardComponent,
+    AuthAccountComponent,
    
   ],
  
@@ -45,26 +52,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
 
     RouterModule ,
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyAjZoYwZqBqpx6zdDSNzzdXEBDCfXOeUgw",
-      authDomain: "angularproject-14cee.firebaseapp.com",
-      databaseURL: "https://angularproject-14cee-default-rtdb.firebaseio.com",
-      projectId: "angularproject-14cee",
-      storageBucket: "angularproject-14cee.appspot.com",
-      messagingSenderId: "166682897564",
-      appId: "1:166682897564:web:c10fdb8f5386ae64d2d159"
-    }),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
+    
     BrowserAnimationsModule
- 
+    
 
   ],
-
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
